@@ -1,0 +1,37 @@
+<h1><%= @title -%></h1>
+
+<h3>Interactions</h3>
+<h2><%= @fullcount -%></h2>
+
+<h3>Unique Users</h3>
+<h2><%= @unique_authors -%></h2>
+
+<h3>Photos</h3>
+<h2><%= @photos -%></h2>
+
+<h3>Articles &amp; Blog Posts</h3>
+<h2><%= @news -%></h2>
+
+<h3>Comments on Articles</h3>
+<h2><%= @comments -%></h2>
+
+<h3>Clicks</h3>
+<h2><%= @clicks -%></h2>
+
+<h3>Twitter Leaderboard</h3>
+<table>
+	<tr>
+		<th>Handle</th>
+		<th>Posts</th>
+	</tr>
+	<% times = 0 -%>
+	<% @leaderboard.each do |l| -%>
+		<% if times <= 10 -%>
+		<tr>
+			<td>@<%= l[0] -%></td>
+			<td><%= l[1] -%></td>
+		</tr>
+		<% times += 1 -%>
+		<% end %>
+	<% end %>
+</table>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205010358) do
+ActiveRecord::Schema.define(version: 20150206002806) do
 
   create_table "interactions", force: true do |t|
     t.string   "ds_id"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(version: 20150205010358) do
     t.string   "source_type"
     t.boolean  "body_match"
     t.boolean  "link_match"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "settings", force: true do |t|
+    t.string   "name"
+    t.string   "varval"
+    t.string   "vartype"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

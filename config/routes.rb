@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  get 'main_controller/webhook'
 
-  get 'main_controller/update'
 
-  get 'main_controller/index'
+  root 'main#index'
+
+  #get ''
+  get 'update' => 'main#update'
+  post 'webhook' => 'main#webhook'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
