@@ -1,37 +1,49 @@
-<h1><%= @title -%></h1>
+<h1 id="title"><%= @title -%></h1>
 
+<div class="left-column">
 <h3>Interactions</h3>
-<h2><%= @fullcount -%></h2>
+<h2 id="fullcount"><%= @fullcount -%></h2>
 
 <h3>Unique Users</h3>
-<h2><%= @unique_authors -%></h2>
+<h2 id="unique_authors"><%= @unique_authors -%></h2>
 
 <h3>Photos</h3>
-<h2><%= @photos -%></h2>
+<h2 id="photos"><%= @photos -%></h2>
+</div>
 
+<div class="right-column">
 <h3>Articles &amp; Blog Posts</h3>
-<h2><%= @news -%></h2>
+<h2 id="news"><%= @news -%></h2>
 
 <h3>Comments on Articles</h3>
-<h2><%= @comments -%></h2>
+<h2 id="comments"><%= @comments -%></h2>
 
 <h3>Clicks</h3>
-<h2><%= @clicks -%></h2>
+<h2 id="clicks"><%= @clicks -%></h2>
+</div>
 
+<div class="middle-column">
 <h3>Twitter Leaderboard</h3>
-<table>
-	<tr>
-		<th>Handle</th>
-		<th>Posts</th>
-	</tr>
-	<% times = 0 -%>
-	<% @leaderboard.each do |l| -%>
-		<% if times <= 10 -%>
-		<tr>
-			<td>@<%= l[0] -%></td>
-			<td><%= l[1] -%></td>
-		</tr>
-		<% times += 1 -%>
-		<% end %>
-	<% end %>
-</table>
+<div id="leaderboard">
+	<%= render partial: "leaderboard", include: @leaderboard -%>
+</div>
+
+</div>
+<script type="text/javascript">
+	
+function worker() {
+  $.ajax({
+    url: '/update.js', 
+    complete: function() {
+    	console.log("updated")
+      // Schedule the next request when the current one's complete
+      setTimeout(worker, 5000);
+    }
+  });
+};
+
+$( document ).ready(function() {
+	worker();
+});
+
+</script>

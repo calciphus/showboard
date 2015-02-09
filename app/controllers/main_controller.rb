@@ -1,5 +1,7 @@
 class MainController < ApplicationController
 
+	protect_from_forgery except: :update
+
 	# GET Display front page
 	def index
 		@fullcount = Interaction.count(:id)
@@ -14,6 +16,18 @@ class MainController < ApplicationController
   
 	# GET Returns JS to update front-page listing
 	def update
+		respond_to do |format|
+			format.js{
+				@fullcount = Interaction.count(:id)
+				@unique_authors = Interaction.all.pluck(:author_name).uniq.size
+				@title = sitevar("title")
+				@photos = Interaction.where(:has_photo).count(:id)
+				@news = Interaction.where(source_type: ["blog","board","lexisnexis","newscred","reddit","wikipedia","wordpress"]).count(:id)
+				@comments = Interaction.where(source_type: ["intensedebate","disqus"]).count(:id)
+				@clicks = Interaction.where(source_type: "bitly").count(:id)
+				@leaderboard = Interaction.group(:author_name).count.sort_by { |name, count| -count }
+			}
+		end
 	end
 
   	# POST Webhook for inbound JSON stream

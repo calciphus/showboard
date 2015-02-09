@@ -1,0 +1,8 @@
+$("#title").text("<%=@title -%>");
+$("#fullcount").text("<%=@fullcount -%>");
+$("#unique_authors").text("<%=@unique_authors -%>");
+$("#photos").text("<%=@photos-%>");
+$("#news").text("<%=@news-%>");
+$("#comments").text("<%=@comments-%>");
+$("#clicks").text("<%=@clicks-%>")
+$("#leaderboard").html("<%= escape_javascript(render partial: 'leaderboard', include: @leaderboard) -%>")

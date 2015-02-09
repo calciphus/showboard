@@ -1,0 +1,16 @@
+<table class="leaderboard">
+	<tr>
+		<th>Handle</th>
+		<th>Posts</th>
+	</tr>
+	<% times = 0 -%>
+	<% @leaderboard.each do |l| -%>
+		<% if times <= 10 -%>
+		<tr>
+			<td>@<%= l[0] -%></td>
+			<td class="score"><%= l[1] -%></td>
+		</tr>
+		<% times += 1 -%>
+		<% end %>
+	<% end %>
+</table>
