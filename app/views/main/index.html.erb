@@ -29,11 +29,22 @@
 </div>
 
 </div>
+
+<% if params[:secret] == "true" -%>
+<div id="secret">
+  <%= render partial: "secret", include: @recent -%>
+</div>
+<% end %>
+
 <script type="text/javascript">
 	
 function worker() {
   $.ajax({
+    <% if params[:secret] == true -%>
     url: '/update.js', 
+    <% else -%>
+    url: '/update.js?secret=true'
+    <% end -%>
     complete: function() {
     	console.log("updated")
       // Schedule the next request when the current one's complete

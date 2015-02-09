@@ -49,11 +49,19 @@ h3{
 	margin-right: auto;
 }
 
-table{
+table.leaderboard{
 	margin-left: auto;
 	margin-right: auto;
 	width: 50%;
 	border-spacing: 0px;
+}
+
+table.secret{
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+	border-spacing: 0px;
+	font-size: 12px;
 }
 
 td{

@@ -12,8 +12,11 @@ class MainController < ApplicationController
 		@comments = Interaction.where(source_type: ["intensedebate","disqus"]).count(:id)
 		@clicks = Interaction.where(source_type: "bitly").count(:id)
 		@leaderboard = Interaction.group(:author_name).count.sort_by { |name, count| -count }
+		if params[:secret] == "true"
+			@recent = Interaction.order("created_at desc").limit(15)
+		end
 	end
-  
+
 	# GET Returns JS to update front-page listing
 	def update
 		respond_to do |format|
@@ -26,8 +29,12 @@ class MainController < ApplicationController
 				@comments = Interaction.where(source_type: ["intensedebate","disqus"]).count(:id)
 				@clicks = Interaction.where(source_type: "bitly").count(:id)
 				@leaderboard = Interaction.group(:author_name).count.sort_by { |name, count| -count }
+				if params[:secret] == "true"
+					@recent = Interaction.order("created_at desc").limit(15)
+				end
 			}
 		end
+
 	end
 
   	# POST Webhook for inbound JSON stream
@@ -40,7 +47,7 @@ class MainController < ApplicationController
 				# Assign direct values where possible
 				i.ds_id = iac[:interaction][:id]
 				i.source_type = iac[:interaction][:type]
-				i.content = iac[:interaction][:type] rescue nil
+				i.content = iac[:interaction][:content] rescue nil
 				i.author_id = iac[:interaction][:author][:id] rescue nil
 
 				# Get Username and Name. If Username exists, use that, otherwise name, otherwise nil
