@@ -21,7 +21,7 @@ class MainController < ApplicationController
 				@fullcount = Interaction.count(:id)
 				@unique_authors = Interaction.all.pluck(:author_name).uniq.size
 				@title = sitevar("title")
-				@photos = Interaction.where(:has_photo).count(:id)
+				@photos = Interaction.where(has_photo: true).count(:id)
 				@news = Interaction.where(source_type: ["blog","board","lexisnexis","newscred","reddit","wikipedia","wordpress"]).count(:id)
 				@comments = Interaction.where(source_type: ["intensedebate","disqus"]).count(:id)
 				@clicks = Interaction.where(source_type: "bitly").count(:id)
