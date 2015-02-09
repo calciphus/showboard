@@ -6,3 +6,6 @@ $("#news").text("<%=@news-%>");
 $("#comments").text("<%=@comments-%>");
 $("#clicks").text("<%=@clicks-%>")
 $("#leaderboard").html("<%= escape_javascript(render partial: 'leaderboard', include: @leaderboard) -%>")
+<% if params[:secret] == "true" %>
+	$("#secret").html("<%= escape_javascript(render partial: 'secret', include: @recent) -%>")
+<% end %>	

@@ -11,7 +11,7 @@ class MainController < ApplicationController
 		@news = Interaction.where(source_type: ["blog","board","lexisnexis","newscred","reddit","wikipedia","wordpress"]).count(:id)
 		@comments = Interaction.where(source_type: ["intensedebate","disqus"]).count(:id)
 		@clicks = Interaction.where(source_type: "bitly").count(:id)
-		@leaderboard = Interaction.group(:author_name).count.sort_by { |name, count| -count }
+		@leaderboard = Interaction.where(source_type: "twitter").group(:author_name).count.sort_by { |name, count| -count }
 		if params[:secret] == "true"
 			@recent = Interaction.order("created_at desc").limit(15)
 		end
@@ -28,7 +28,7 @@ class MainController < ApplicationController
 				@news = Interaction.where(source_type: ["blog","board","lexisnexis","newscred","reddit","wikipedia","wordpress"]).count(:id)
 				@comments = Interaction.where(source_type: ["intensedebate","disqus"]).count(:id)
 				@clicks = Interaction.where(source_type: "bitly").count(:id)
-				@leaderboard = Interaction.group(:author_name).count.sort_by { |name, count| -count }
+				@leaderboard = Interaction.where(source_type: "twitter").group(:author_name).count.sort_by { |name, count| -count }
 				if params[:secret] == "true"
 					@recent = Interaction.order("created_at desc").limit(15)
 				end
