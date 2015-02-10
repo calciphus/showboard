@@ -13,7 +13,7 @@ class MainController < ApplicationController
 		@clicks = Interaction.where(source_type: "bitly").count(:id)
 		@leaderboard = Interaction.where(source_type: "twitter").group(:author_name).count.sort_by { |name, count| -count }
 		if params[:secret] == "true"
-			@recent = Interaction.order("created_at desc").limit(15)
+			@recent = Interaction.order("created_at desc").limit(8)
 		end
 	end
 
@@ -30,7 +30,7 @@ class MainController < ApplicationController
 				@clicks = Interaction.where(source_type: "bitly").count(:id)
 				@leaderboard = Interaction.where(source_type: "twitter").group(:author_name).count.sort_by { |name, count| -count }
 				if params[:secret] == "true"
-					@recent = Interaction.order("created_at desc").limit(15)
+					@recent = Interaction.order("created_at desc").limit(8)
 				end
 			}
 		end
