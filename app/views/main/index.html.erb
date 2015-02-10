@@ -43,7 +43,7 @@ function worker() {
     <% if params[:secret] == true -%>
     url: '/update.js', 
     <% else -%>
-    url: '/update.js?secret=true'
+    url: '/update.js?secret=true',
     <% end -%>
     complete: function() {
     	console.log("updated")
