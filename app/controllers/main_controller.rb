@@ -34,8 +34,25 @@ class MainController < ApplicationController
 				end
 			}
 		end
-
 	end
+
+	# Show data for graph
+	def data
+		@dates = Interaction.all.group("DATE_TRUNC('hour', created_at)").count
+
+		render layout: false
+	end
+
+	# Show markers
+	def markers
+		respond_to do |format|
+			format.json{
+
+			}
+		end
+	end
+
+
 
   	# POST Webhook for inbound JSON stream
   	def webhook

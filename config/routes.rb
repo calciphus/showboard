@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   get 'update' => 'main#update'
   post 'webhook' => 'main#webhook'
 
+  get 'data' => 'main#data'
+  get 'markers' => 'main#markers'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

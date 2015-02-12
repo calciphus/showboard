@@ -75,3 +75,58 @@ tr:nth-child(odd) {
 td.score{
 	text-align: center;
 }
+
+
+
+
+
+/* D3JS Stuff for Graphs */
+
+svg {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+text{
+	fill: #fff;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #FFF;
+  shape-rendering: crispEdges;
+}
+
+.area {
+  fill: #D7841F;
+}
+
+.marker.client .marker-bg,
+.marker.client path {
+  fill: rgba(0, 169, 205, 0.7);
+  stroke: rgba(0, 169, 205, 1);
+  stroke-width: 3;
+}
+
+.marker.server .marker-bg,
+.marker.server path {
+  fill: rgba(78, 99, 113, 0.7);
+  stroke: rgba(78, 99, 113, 1);
+  stroke-width: 3;
+}
+
+.marker path {
+  fill: none;
+}
+
+.legend text,
+.marker text {
+  fill: #fff;
+  font-weight: bold;
+}
+
+.marker text {
+  text-anchor: middle;
+}
+
