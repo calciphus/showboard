@@ -59,16 +59,17 @@ class MainController < ApplicationController
 					i.author_name = name
 				end
 
-				# Iterate through links array and check to see if final URLs include image tags
+				# Iterate through links array and check to see if final URLs include images or are Instagram
 				links = iac[:links][:normalized_url] rescue nil
 				i.has_photo = false
 				if links != nil
 					links.each do |l|
-						if l.include?(".png") or l.include?(".jpg") or l.include?(".gif")
+						if l.include?(".png") or l.include?(".jpg") or l.include?(".gif") or l.include?("instagram")
 							i.has_photo = true
 						end
 					end
 				end
+
 
 				# Check and see if the body text contains any of the tracking keywords or hashtags
 				keywords = sitevar("keywords")

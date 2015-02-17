@@ -40,10 +40,10 @@
 	
 function worker() {
   $.ajax({
-    <% if params[:secret] == true -%>
-    url: '/update.js', 
-    <% else -%>
+    <% if params[:secret] == "true" -%>
     url: '/update.js?secret=true',
+    <% else -%>
+    url: '/update.js', 
     <% end -%>
     complete: function() {
     	console.log("updated")
