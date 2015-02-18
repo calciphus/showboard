@@ -38,9 +38,17 @@ class MainController < ApplicationController
 
 	# Show data for graph
 	def data
-		@dates = Interaction.all.group("DATE_TRUNC('hour', created_at)").count
-
-		render layout: false
+		if ENV["RAILS_ENV"] == "development"
+			#Fake data on Dev env
+			@dates = [["2015-02-17 19:00:00 UTC", 69], ["2015-02-17 20:00:00 UTC", 279], ["2015-02-17 21:00:00 UTC", 180]]
+		else
+			@dates = Interaction.all.group("DATE_TRUNC('hour', created_at)").count.sort_by{|k,v| k}
+		end
+		output = ""
+		@dates.each do |k,v|
+			output << "#{"#{k.in_time_zone('Pacific Time (US & Canada)')}\t#{v}"}\n"
+		end
+		render text: output.strip
 	end
 
 	# Show markers
