@@ -64,8 +64,10 @@ class MainController < ApplicationController
 				i.has_photo = false
 				if links != nil
 					links.each do |l|
-						if l != "" and l != nil and (l.include?(".png") or l.include?(".jpg") or l.include?(".gif") or l.include?("instagram") or l.include?("pic.twitter.com"))
-							i.has_photo = true
+						if l != nil 
+							if l.include?(".png") or l.include?(".jpg") or l.include?(".gif") or l.include?("instagram") or l.include?("pic.twitter.com")
+								i.has_photo = true
+							end
 						end
 					end
 				end
