@@ -34,8 +34,33 @@ class MainController < ApplicationController
 				end
 			}
 		end
-
 	end
+
+	# Show data for graph
+	def data
+		if ENV["RAILS_ENV"] == "development"
+			#Fake data on Dev env
+			@dates = [["2015-02-17 19:00:00 0", 69], ["2015-02-17 20:00:00 0", 279], ["2015-02-17 21:00:00 0", 180]]
+		else
+			@dates = Interaction.all.group("DATE_TRUNC('hour', created_at)").count.sort_by{|k,v| k}
+		end
+		output = "letter\tfrequency\n"
+		@dates.each do |k,v|
+			output << "#{k.in_time_zone('Pacific Time (US & Canada)').to_s.split(' ')[1]}\t#{v}\n"
+		end
+		render text: output.strip
+	end
+
+	# Show markers
+	def markers
+		respond_to do |format|
+			format.json{
+
+			}
+		end
+	end
+
+
 
   	# POST Webhook for inbound JSON stream
   	def webhook
