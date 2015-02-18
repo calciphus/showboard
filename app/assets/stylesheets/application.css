@@ -35,6 +35,10 @@ h3{
 	margin-bottom: 10px
 }
 
+.bar {
+  fill: #D7841F;
+}
+
 .left-column{
 	float: left;
 	width: 32%;
